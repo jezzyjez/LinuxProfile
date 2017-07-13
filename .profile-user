@@ -1,0 +1,111 @@
+if [ -e /var/cfengine/classes/nextgen ]
+then
+    source /home/fonix/prd_progs/tools/engineering-login.sh
+    source /home/fonix/prd_progs/tools/fdb_utils.sh
+    source /home/fonix/prd_progs/tools/dbl/dbl_defs.sh
+    source /home/fonix/prd_progs/tools/uniframe/common_defs.sh
+else
+    echo "*** This does not appear to be a NEXTGEN CLASS MACHINE, skipping NEXTGEN specific set-up ***"
+fi
+
+#bcom credentials
+source /home/fonix/prd_progs/tools/bestcom/common_defs.sh
+# source /home/user/cbarcelona/sh/ccc/ccc_common_profile_user.sh
+source /home/fonix/prd_progs/bcomcts/tools/ccc_common_profile_user.sh 
+
+alias ng='perl /home/fonix/prd_progs/bcomcts/tools/fake_ngen_generator/fake_ngen_generator.pl'
+
+# Set up an awesome prompt
+# Stef's pretty prompt
+PS1="\n\e[2;35m[ \e[2;32m\d \t \e[2;35m| \e[2;33m\u\e[2;35m@\e[2;33m\h\e[m:\e[2;32m\w\e[m\e[2;35m ]\n\e[2;33m>> \e[1;37m"
+
+# Simple prompt
+PS1='\[\033[31;1m\u\[\033[0m@\[\033[34;1m\h\[\033[0m [\t] \[\033[37m\w\[\033[0m/ > '
+
+# Jason's prompt
+source /home/user/jezamora/.prompt_git
+PS1="[\t \h:\w] "
+PS1="[\e[2;31m\t\e[m \e[2;36m\u\e[m\e[1;37m@\e[m\e[1;34m\h\e[m \e[2;32m\w\e[m] \$(prompt_git) \n>> "
+
+# Disable XOFF (ctrl+s) from Ruining Everything.
+# stty -ixon
+
+# More user-friendly
+alias archive_dir="/home/data/vmsarc/bcomcts/"
+alias ll="ls -al --color=auto"
+alias dirsize="du -sh"
+alias tdir="ll -t -r"
+alias Pwd="home/user/jezamora/"
+alias qsf="quetex show | grep "
+alias jy="joey -d /home/user/jezamora/Work/Dev/sp_compass/_defs.dat"
+# AsiaPac Perl Critic and Perl Tidy
+alias appc='perlcritic --profile /home/fonix/prd_progs/asiapac/tools/perlcriticrc'
+alias appt='perltidy -b --pro=/home/fonix/prd_progs/asiapac/tools/perltidyrc'
+
+# Turbo Check Plus for Uniframe systems
+alias tcp='perl /home/fonix/prd_progs/tools/uniframe/utils/turbo_check_plus.pl'
+
+# ReviewBoard
+alias rb='/home/data/index/script/common/submit_review_board.pl'
+
+alias emacs="emacs -rv"
+alias lsd="ls -harlS"
+alias rls="while true; do clear; rakelog summary; sleep 30; done"
+
+# Perforce
+export P4PORT="scm.factset.com:1666"
+export P4CONFIG=".p4rc"
+export P4DIFF="vimdiff"
+export P4EDITOR="vim"
+export P4USER="jezamora"
+export EDITOR="vim"
+alias p4not='find . -type f -print0 | xargs -0 p4 fstat'
+alias p4all='find . -type f -print | p4 -x - add'
+
+# More user-friendly
+alias perf="p4"
+alias ll="ls -al --color=auto"
+alias ty="cat"
+alias tdir="ll -t -r"
+alias lo="logout"
+alias cls="clear"
+alias tt2="set term/inquire"
+# Directory navigation
+alias ..="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."
+
+# Useful shortcut for logging into asiapac_mgr's interactive shell
+# You'll need this for editing the crontab and p4 syncing
+alias suas="sudo -u asiapac_mgr -i"
+alias slo='source /home/fonix/prd_progs/price/tools/logout.sh asiapac_mgr'
+
+# To easily empty a file
+alias empty='cat /dev/null >'
+
+# To add date and time to your history
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
+#bcom
+source /home/fonix/prd_progs/tools/bestcom/common_defs.sh
+
+#bcom_dev credentials
+# source /home/user/cbarcelona/sh/ccc/ccc_common_profile_user.sh
+
+#TMUX
+
+alias t="$HOME/local/bin/tmux -2 -u"
+alias tu="$HOME/local/bin/tmux -2 -u" 
+alias ta="$HOME/local/bin/tmux -2 -u a -t"
+alias tn="$HOME/local/bin/tmux -2 -u new-session -s "
+alias tk="$HOME/local/bin/tmux  kill-session -t"
+alias rcd="sh /home/user/jezamora/Work/Dev/tools/run_command_for_dates.sh"
+alias dategen="perl /home/user/jezamora/Work/Dev/tools/dategen.pl"
+export bdi_db_stg="/home/fonix/data2/bcomcts/prod/ccc/db/"
+
+alias rf="source /home/fonix/prd_progs/tools/define_rakefds_logicals.sh release"
+
+alias it="sh /home/user/jezamora/ccc/dev/lazy_tools/integrate_feed.sh"
+# source /home/user/kbernal/ccc/tools/pylint/pylint.sh
