@@ -39,8 +39,6 @@ filetype plugin indent on    " required
 
 set number 
 set nowrap
-set runtimepath+=/home/user/cbarcelona/vimfiles/,/home/user/cbarcelona/vimfiles/after/
-filetype plugin on
 colorscheme desert
 set tabstop=4
 set expandtab
@@ -59,6 +57,7 @@ function XMLAlign()
     call setpos('.', cursor)
     call winrestview(l:winview)
 endfunction
+
 let mapleader=" " 
 map <leader>a :call XMLAlign()<CR>
 map <leader>t ::NERDTreeToggle<CR>
@@ -73,3 +72,7 @@ set term=screen-256color
 " set colorcolumn=80,120
 :inoremap kj <ESC>
 " Use to pastetoggle automatically
+set laststatus=2
+set statusline=%.t       "tail of the filename
+set statusline+=%=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file formatl
