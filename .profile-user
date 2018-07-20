@@ -1,7 +1,7 @@
 source ~/LinuxProfile/.prompt_git
 
 PS1="[\t \h:\w] "
-PS1="[\e[2;31m\t\e[m \e[2;36m\u\e[m\e[1;37m \e[2;32m\w\e[m]: \$(prompt_git) "
+PS1="[\e[2;31m\t\e[m \e[2;36m\u\e[m\e[1;37m \e[2;32m\w\e[m]: \$(prompt_git) >> "
 
 # Disable XOFF (ctrl+s) from Ruining Everything.
 # stty -ixon
@@ -17,6 +17,8 @@ alias empty='cat /dev/null >'
 
 # To add date and time to your history
 export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# Test this stufff
 
 
 #TMUX
