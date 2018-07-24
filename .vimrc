@@ -6,18 +6,18 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
+       
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'flazz/vim-colorschemes'
-
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-Plugin 'vin-gnome'
-
+Plugin 'ZenCoding.vim'
 Plugin 'easymotion/vim-easymotion'
-
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'mattn/emmet-vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -41,6 +41,7 @@ set number
 set nowrap
 colorscheme desert
 set tabstop=4
+set shiftwidth=4
 set expandtab
 set incsearch
 set hlsearch
@@ -64,8 +65,10 @@ map <leader>t ::NERDTreeToggle<CR>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
-
+map <leader>w :call ToggleTab()<CR>
 set term=screen-256color
+set colorcolumn=80,100
+highlight ColorColumn ctermbg=8
 
 "Add highligted column"
 " highlight ColorColumn ctermbg=7
@@ -76,3 +79,18 @@ set laststatus=2
 set statusline=%.t       "tail of the filename
 set statusline+=%=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file formatl
+let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
+set rtp+=~/.fzf
+
+function ToggleTab()
+    if &tabstop == 4
+        set tabstop=2
+        set shiftwidth=2
+    else
+        set tabstop=4
+        set shiftwidth=4
+    endif
+endfunction
