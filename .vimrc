@@ -14,10 +14,16 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ZenCoding.vim'
 Plugin 'easymotion/vim-easymotion'
-"Plugin 'davidhalter/jedi-vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/emmet-vim'
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -39,7 +45,7 @@ filetype plugin indent on    " required
 
 set number 
 set nowrap
-colorscheme desert
+colorscheme srcery
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -83,8 +89,6 @@ let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
-set rtp+=~/.fzf
-
 function ToggleTab()
     if &tabstop == 4
         set tabstop=2
@@ -94,3 +98,31 @@ function ToggleTab()
         set shiftwidth=4
     endif
 endfunction
+
+"Autoclose preview after completion 
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+"Set Snippet Directory for neosnippet
+let g:neosnippet#snippets_directory='~/.vim/snippets/'
+
+" Plugin key-mappings.
+" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+ xmap <C-k>     <Plug>(neosnippet_expand_target)
+"
+" " SuperTab like snippets behavior.
+" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+" "imap <expr><TAB>
+" " \ pumvisible() ? "\<C-n>" :
+" " \ neosnippet#expandable_or_jumpable() ?
+" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"
+" " For conceal markers.
+ if has('conceal')
+   set conceallevel=2 concealcursor=niv
+   endif
+
+let g:deoplete#enable_at_startup = 1
