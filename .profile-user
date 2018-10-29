@@ -1,7 +1,8 @@
 source ~/LinuxProfile/.prompt_git
 
-PS1="[\t \h:\w] "
-PS1="[\e[2;31m\t\e[m \e[2;36m\u\e[m\e[1;37m \e[2;32m\w\e[m]: \$(prompt_git) >> "
+export LANG=en_US.UTF-8
+
+PS1="\[[\e[2;31m\t\e[m \e[2;36m\u\e[m\e[1;37m \e[2;32m\w\e[m]\]: \$(prompt_git) >> "
 
 # Disable XOFF (ctrl+s) from Ruining Everything.
 # stty -ixon
@@ -29,3 +30,18 @@ alias ta="tmux -2 -u a -t"
 alias tn="tmux -2 -u new-session -s "
 alias tk="tmux  kill-session -t"
 alias v="vim"
+
+
+alias sd="sudo "
+alias cb="~/aws_resource/codebuild_build.sh -i aws/codebuild/python:3.6.5"
+
+export WORKON_HOME=~/Envs
+
+
+# Android SDK
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+export JAVA_HOME=/usr/bin/java
