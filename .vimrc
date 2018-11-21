@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype on
 
 " set the runtime path to include Vundle and initialize 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -10,32 +10,46 @@ call vundle#begin()
 "let Vundle manage Vundle, required 
 Plugin 'VundleVim/Vundle.vim' 
 Plugin 'scrooloose/nerdtree'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'ZenCoding.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'Vimjas/vim-python-pep8-indent' 
+
+"Snippets
 Plugin 'Shougo/deoplete.nvim' 
 Plugin 'roxma/nvim-yarp'
 Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'python-mode/python-mode'
-Plugin 'tpope/vim-fugitive'
-
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'vim-vdebug/vdebug'
+
+"Syntax Highlighter/Indention
 Plugin 'gabrielelana/vim-markdown'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'joshdick/onedark.vim'
 Plugin 'sheerun/vim-polyglot'
+
+"Git
+Plugin 'airblade/vim-gitgutter'
+
+"Theme/Ui
 Plugin 'itchyny/lightline.vim'
+Plugin 'joshdick/onedark.vim'
+Plugin 'flazz/vim-colorschemes'
+
+"Python Plugins
+Plugin 'Vimjas/vim-python-pep8-indent' 
+Plugin 'python-mode/python-mode', { 'branch': 'develop' }
+Plugin 'vim-vdebug/vdebug'
 
 "React/JS plugin
 Plugin 'w0rp/ale'
 Plugin 'mattn/emmet-vim'
 Plugin 'skywind3000/asyncrun.vim'
+
+"Ruby Plugin
+Plugin 'tpope/vim-rails'
+Plugin 'vim-bundler'
+Plugin 'vim-haml'
+Plugin 'vim-endwise'
+"
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -143,28 +157,22 @@ let g:pymode_python = 'python3'
 let g:ycm_goto_buffer_command = 'new-tab'
 set updatetime=100
 
-
- 
-
-if (has("nvim"))
-   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
- endif
- "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
- "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
- " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
- if (has("termguicolors"))
-   "set termguicolors
- endif
-
- "colorscheme srcery
- colorscheme onedark
- let g:onedark_termcolors=256
- let g:lightline = {
+colorscheme onedark
+let g:onedark_termcolors=256
+let g:lightline = {
    \ 'colorscheme': 'onedark',
    \ }
 
- 
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 1 " Less distracting when opening a new file
+
+"autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+
+"https://github.com/sheerun/vim-polyglot/issues/303
+let g:graphql_javascript_tags = []
+
+
 " Shortcuts
 let mapleader=" " 
 map <leader>a :call XMLAlign()<CR>
@@ -191,9 +199,4 @@ map <leader>gs :GitGutterSignsToggle<CR>
 map <leader>gh :GitGutterLineHighlightsToggle<CR>
 map <leader>rv :so $MYVIMRC <CR>
 map <leader>pl :PymodeLintAuto <CR>
-
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
-autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+map <leader>jl :AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %<CR>
