@@ -200,3 +200,5 @@ map <leader>gh :GitGutterLineHighlightsToggle<CR>
 map <leader>rv :so $MYVIMRC <CR>
 map <leader>pl :PymodeLintAuto <CR>
 map <leader>jl :AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %<CR>
+
+"" test
