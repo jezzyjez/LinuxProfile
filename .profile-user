@@ -44,10 +44,9 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
-export JAVA_HOME=/usr/bin/java
+export JAVA_HOME=/usr/lib/jvm/java-11-oracle/
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+#export PYTHONPATH=$PYTHONPATH:/home/jezreel/debugger/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86/pythonlib/
 
 source /home/jezreel/.local/bin/virtualenvwrapper.sh
-
-#Virtual env for Ruby
-source /home/jezreel/.rvm/scripts/rvm
+source /etc/profile.d/rvm.sh

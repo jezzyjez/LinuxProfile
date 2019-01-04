@@ -36,7 +36,9 @@ Plugin 'flazz/vim-colorschemes'
 
 "Python Plugins
 Plugin 'Vimjas/vim-python-pep8-indent' 
+"https://github.com/python-mode/python-mode/issues/958 
 Plugin 'python-mode/python-mode', { 'branch': 'develop' }
+Plugin 'vim-python/python-syntax'
 Plugin 'vim-vdebug/vdebug'
 
 "React/JS plugin
@@ -200,5 +202,3 @@ map <leader>gh :GitGutterLineHighlightsToggle<CR>
 map <leader>rv :so $MYVIMRC <CR>
 map <leader>pl :PymodeLintAuto <CR>
 map <leader>jl :AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %<CR>
-
-"" test
