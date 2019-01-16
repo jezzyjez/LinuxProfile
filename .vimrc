@@ -3,6 +3,8 @@ filetype on
 
 " set the runtime path to include Vundle and initialize 
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.fzf
+
 call vundle#begin() 
 " alternatively, pass a path where Vundle should install plugins "
 "call vundle#begin('~/some/path/here') " 
@@ -12,7 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plugin 'scrooloose/nerdcommenter'
 
 "Snippets
@@ -25,10 +27,7 @@ Plugin 'Shougo/neosnippet-snippets'
 "Syntax Highlighter/Indention
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'sheerun/vim-polyglot'
-
-"Git
-Plugin 'airblade/vim-gitgutter'
-
+Plugin 'airblade/vim-gitgutter' 
 "Theme/Ui
 Plugin 'itchyny/lightline.vim'
 Plugin 'joshdick/onedark.vim'
@@ -36,7 +35,6 @@ Plugin 'flazz/vim-colorschemes'
 
 "Python Plugins
 Plugin 'Vimjas/vim-python-pep8-indent' 
-"https://github.com/python-mode/python-mode/issues/958 
 Plugin 'python-mode/python-mode', { 'branch': 'develop' }
 Plugin 'vim-python/python-syntax'
 Plugin 'vim-vdebug/vdebug'
@@ -155,6 +153,7 @@ let g:pymode_options_max_line_length = 120
 let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
 let g:pymode_options_colorcolumn = 1
 let g:pymode_python = 'python3'
+let g:python_highlight_all = 1
 
 let g:ycm_goto_buffer_command = 'new-tab'
 set updatetime=100
@@ -168,6 +167,11 @@ let g:lightline = {
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 1 " Less distracting when opening a new file
+let g:ale_linters = {
+            \   'javascript': ['eslint'],
+            \}
+let g:ale_linters_explicit = 1
+
 
 "autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
 
@@ -201,4 +205,5 @@ map <leader>gs :GitGutterSignsToggle<CR>
 map <leader>gh :GitGutterLineHighlightsToggle<CR>
 map <leader>rv :so $MYVIMRC <CR>
 map <leader>pl :PymodeLintAuto <CR>
-map <leader>jl :AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %<CR>
+map <leader>jl :AsyncRun -post=checktime eslint --fix %<CR>
+map <leader>at :ALEToggle<CR>
