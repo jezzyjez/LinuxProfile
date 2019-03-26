@@ -16,6 +16,12 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'chrisbra/csv.vim'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+
+"FuzzyFinder
+Plugin 'junegunn/fzf.vim'
+"Plugin '/home/jezreel/.fzf/bin/fzf'
 
 "Snippets
 Plugin 'Shougo/deoplete.nvim' 
@@ -46,9 +52,9 @@ Plugin 'skywind3000/asyncrun.vim'
 
 "Ruby Plugin
 Plugin 'tpope/vim-rails'
-Plugin 'vim-bundler'
-Plugin 'vim-haml'
-Plugin 'vim-endwise'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-endwise'
 "
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -154,6 +160,7 @@ let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_l
 let g:pymode_options_colorcolumn = 1
 let g:pymode_python = 'python3'
 let g:python_highlight_all = 1
+let g:pymode_lint_unmodified = 1
 
 let g:ycm_goto_buffer_command = 'new-tab'
 set updatetime=100
@@ -181,7 +188,7 @@ let g:graphql_javascript_tags = []
 
 " Shortcuts
 let mapleader=" " 
-map <leader>a :call XMLAlign()<CR>
+map <leader>a :Ag<CR>
 map <leader>t ::NERDTreeToggle<CR>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
@@ -207,3 +214,15 @@ map <leader>rv :so $MYVIMRC <CR>
 map <leader>pl :PymodeLintAuto <CR>
 map <leader>jl :AsyncRun -post=checktime eslint --fix %<CR>
 map <leader>at :ALEToggle<CR>
+map <leader>ss :execute 'python3 import sys; print(sys.path)'<CR>
+map <leader>jf :execute '%!python -m json.tool' <CR>
+
+map <leader>f :FZF <CR>
+
+
+let g:ycm_extra_conf_globlist = ['~/test-projects/*', '~/projects/*']
+let g:ycm_confirm_extra_conf=1
+let vim_markdown_preview_github=1
+
+nmap <silent> <leader>og :exec '!google-chrome % &'<CR>
+
