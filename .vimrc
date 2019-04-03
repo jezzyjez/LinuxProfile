@@ -5,6 +5,13 @@ filetype on
 set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.fzf
 
+" Set swap file directory
+set directory=$HOME/.vim/swapfiles//
+
+" Maintain undo History between sessions
+set undofile
+set undodir=$HOME/.vim/undodir//
+
 call vundle#begin() 
 " alternatively, pass a path where Vundle should install plugins "
 "call vundle#begin('~/some/path/here') " 
