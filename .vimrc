@@ -62,6 +62,15 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-endwise'
+
+"Other Plugin
+Plugin 'vim-scripts/taglist.vim'
+
+"PHP
+
+Plugin 'joonty/vim-phpqa'
+
+
 "
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -192,8 +201,9 @@ let g:ale_linters_explicit = 1
 "https://github.com/sheerun/vim-polyglot/issues/303
 let g:graphql_javascript_tags = []
 
+" PHP 
+let g:phpqa_codesniffer_args = "--standard=Zend"
 
-" Shortcuts
 let mapleader=" " 
 map <leader>a :Ag<CR>
 map <leader>t ::NERDTreeToggle<CR>
@@ -225,11 +235,14 @@ map <leader>ss :execute 'python3 import sys; print(sys.path)'<CR>
 map <leader>jf :execute '%!python -m json.tool' <CR>
 
 map <leader>f :FZF <CR>
+nnoremap <silent>ct :TlistToggle<CR>
+
 
 
 let g:ycm_extra_conf_globlist = ['~/test-projects/*', '~/projects/*']
 let g:ycm_confirm_extra_conf=1
 let vim_markdown_preview_github=1
+let Tlist_GainFocus_On_ToggleOpen=1
 
 nmap <silent> <leader>og :exec '!google-chrome % &'<CR>
 

@@ -34,6 +34,7 @@ alias v="vim"
 
 alias sd="sudo "
 alias cb="~/aws_resource/codebuild_build.sh -i aws/codebuild/python:3.6.5"
+alias pydb="python $(which pydbgp) -d localhost:9000"
 
 export WORKON_HOME=~/Envs
 
