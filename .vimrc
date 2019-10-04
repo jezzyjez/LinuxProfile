@@ -30,13 +30,6 @@ Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'junegunn/fzf.vim'
 "Plugin '/home/jezreel/.fzf/bin/fzf'
 
-"Snippets
-Plugin 'Shougo/deoplete.nvim' 
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
-
 "Syntax Highlighter/Indention
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'sheerun/vim-polyglot'
@@ -69,6 +62,7 @@ Plugin 'vim-scripts/taglist.vim'
 "PHP
 
 Plugin 'joonty/vim-phpqa'
+Plugin 'KabbAmine/vCoolor.vim'
 
 
 "
@@ -144,48 +138,36 @@ function ToggleTab()
     endif
 endfunction
 
+""""""""""""""""""""""""YCM"""""""""""""""""""""
 "Autoclose preview after completion 
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_goto_buffer_command = 'new-tab'
+set updatetime=100
+let g:ycm_extra_conf_globlist = ['~/test-projects/*', '~/projects/*']
+let g:ycm_confirm_extra_conf=1
+let g:ycm_semantic_triggers = {
+    \   'css': [ 're!^\s{4}', 're!:\s+' ],
+    \ }
+""""""""""""""""""""""""YCM"""""""""""""""""""""
 
-"Set Snippet Directory for neosnippet
-let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
-" Plugin key-mappings.
-" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
- imap <C-k>     <Plug>(neosnippet_expand_or_jump)
- smap <C-k>     <Plug>(neosnippet_expand_or_jump)
- xmap <C-k>     <Plug>(neosnippet_expand_target)
-"
-" " SuperTab like snippets behavior.
-" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-" "imap <expr><TAB>
-" " \ pumvisible() ? "\<C-n>" :
-" " \ neosnippet#expandable_or_jumpable() ?
-" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
- smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"
-" " For conceal markers.
- if has('conceal')
-   set conceallevel=2 concealcursor=niv
-   endif
-
-let g:deoplete#enable_at_startup = 1
+"""""""""""Pymode""""""""""""""""""""
 let g:pymode_options_max_line_length = 120
 let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
 let g:pymode_options_colorcolumn = 1
 let g:pymode_python = 'python3'
 let g:python_highlight_all = 1
 let g:pymode_lint_unmodified = 1
+"""""""""""Pymode"""""""""""""""""""""
 
-let g:ycm_goto_buffer_command = 'new-tab'
-set updatetime=100
 
 colorscheme onedark
 let g:onedark_termcolors=256
 let g:lightline = {
    \ 'colorscheme': 'onedark',
    \ }
+
+""""""""""""""""""""""""""Ale""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
@@ -194,9 +176,8 @@ let g:ale_linters = {
             \   'javascript': ['eslint'],
             \}
 let g:ale_linters_explicit = 1
-
-
-"autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+"""""""""""""""""""""""""Ale"""""""""""""""""""""""""""""""""""""""""""""""
 
 "https://github.com/sheerun/vim-polyglot/issues/303
 let g:graphql_javascript_tags = []
@@ -204,6 +185,16 @@ let g:graphql_javascript_tags = []
 " PHP 
 let g:phpqa_codesniffer_args = "--standard=Zend"
 
+"""""""""""""""""""""""""Ale"""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""vim_markdown""""""""""""""""""""""""""""""""
+let vim_markdown_preview_github=1
+let Tlist_GainFocus_On_ToggleOpen=1
+"""""""""""""""""""""""""vim_markdown""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""Mappings""""""""""""""""""""""""""""""""""'
 let mapleader=" " 
 map <leader>a :Ag<CR>
 map <leader>t ::NERDTreeToggle<CR>
@@ -236,13 +227,10 @@ map <leader>jf :execute '%!python -m json.tool' <CR>
 
 map <leader>f :FZF <CR>
 nnoremap <silent>ct :TlistToggle<CR>
-
-
-
-let g:ycm_extra_conf_globlist = ['~/test-projects/*', '~/projects/*']
-let g:ycm_confirm_extra_conf=1
-let vim_markdown_preview_github=1
-let Tlist_GainFocus_On_ToggleOpen=1
-
 nmap <silent> <leader>og :exec '!google-chrome % &'<CR>
 
+
+"""""""""""""""""""""Mappings""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""Others"""""""""""""""""""""
+let g:vcoolor_map='<C-p>'
